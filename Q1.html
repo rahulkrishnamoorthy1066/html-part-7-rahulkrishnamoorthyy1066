@@ -768,10 +768,9 @@ field.
 (minimum 8 characters, one uppercase, one number).-->
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
   <title>Dynamic Registration Form</title>
   <style>
-    .error { color: red; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -790,7 +789,6 @@ field.
     const nameErr = document.getElementById("nameErr");
     const emailErr = document.getElementById("emailErr");
     const passErr = document.getElementById("passErr");
-
     function validateName() {
       if (nameField.value.trim() === "") {
         nameErr.textContent = " Name required";
@@ -823,12 +821,11 @@ field.
     function checkForm() {
       submitBtn.disabled = !(validateName() && validateEmail() && validatePassword());
     }
-
-    // Trigger validation as user types
-    nameField.addEventListener("input", checkForm);
-    emailField.addEventListener("input", checkForm);
-    passField.addEventListener("input", checkForm);
-  </script>
+    nameField.addEventListener("blur", () => { validateName(); checkForm(); });
+    emailField.addEventListener("blur", () => { validateEmail(); checkForm(); });
+    passField.addEventListener("blur", () => { validatePassword(); checkForm(); });
+    document.getElementById("regForm").addEventListener("input", checkForm);
+    </script>
 </body>
 </html>
 
@@ -1963,4 +1960,5 @@ Hint: Use .toggleClass("dark-mode").-->
   </script>
 </body>
 </html>
+
 
